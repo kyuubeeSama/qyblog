@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bjy.css">
+    <link rel="stylesheet" type="text/css" href="__HOME__/css/index.css">
+    <css file="__ADMIN__/css/login.css" />
+</head>
+<body>
+<form class="form-group" action="{:url('Admin/Login/login')}" method="post">
+    <div id="Login">
+        <input class="form-control modal-sm" type="password" placeholder="后台登录密码" name="ADMIN_PASSWORD" value="">
+        <input class="form-control modal-sm" type="text" placeholder="验证码" autocomplete="off"  name="verify">
+        <img class="verify" src="{:url('Admin/Login/showVerify')}" title="点击更换"  onclick="this.src+='/'+Math.random();">
+        <input class="btn btn-primary submit" type="submit" value="登录">
+    </div>
+</form>
+<script src="__PUBLIC__/js/jquery-3.4.1.min.js"></script>
+<script>
+    logoutUrl="{:url('Home/User/logout')}";
+</script>
+<script src="__PUBLIC__/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/js/html5shiv.min.js"></script>
+<script src="__PUBLIC__/js/respond.min.js"></script>
+<![endif]-->
+<script src="__PUBLIC__/pace/pace.min.js"></script>
+<script src="__HOME__/js/index.js"></script>
+
+</body>
+</html>
