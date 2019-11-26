@@ -75,7 +75,7 @@ return [
     'controller_auto_search' => false,
 
     // +----------------------------------------------------------------------
-    // | URL设置
+    // | URL设置c
     // +----------------------------------------------------------------------
 
     // PATHINFO变量名 用于兼容模式
@@ -142,5 +142,13 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-
+    'captcha'  => [        // 验证码字符集合3.
+	    'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',         // 验证码字体大小(px)5.
+	    'fontSize' => 28,         // 是否画混淆曲线7.
+	    'useCurve' => false,          // 验证码图片高度9.
+	    'imageH'   => 40,        // 验证码图片宽度11.
+	    'imageW'   => 150,         // 验证码位数13.
+	    'length'   => 4,         // 验证成功后是否重置        15.
+	    'reset'    => true
+		],
 ];
