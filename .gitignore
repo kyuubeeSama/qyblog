@@ -5,3 +5,6 @@
 thinkphp
 .env
 .DS_Store
+public/error/
+public/index.html
+public/.htaccess
