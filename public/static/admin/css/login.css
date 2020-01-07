@@ -1,35 +1,32 @@
-@charset "utf-8";
-/* Document CSS */
-html{
+html {
     overflow-y: hidden;
-    overflow-x: hidden;
+    overflow-x: hidden
 }
-body{
+
+body {
     width: 100%;
     height: 650px;
     background: url(../image/login-bg.jpg) no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 100%
 }
-#Login{
+
+#Login {
     margin: 200px auto;
     width: 300px;
-    height: 300px;
-    .form-control{
-        opacity: 0.6;
-    }
-    .verify{
-        width: 140px;
-        height: 40px;
-        opacity: 0.6;
-        cursor: pointer;
-    }
-    .submit{
-        width: 155px;
-    }
+    height: 300px
 }
 
+#Login .form-control {
+    opacity: .6
+}
 
+#Login .verify {
+    width: 140px;
+    height: 40px;
+    opacity: .6;
+    cursor: pointer
+}
 
-
-
-
+#Login .submit {
+    width: 155px
+}

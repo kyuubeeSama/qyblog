@@ -33,10 +33,10 @@ php;
 			<!--[if lt IE 9]>
 			<script src="__PUBLIC__/js/html5shiv.min.js"></script>
 			<script src="__PUBLIC__/js/respond.min.js"></script>
-			<![endif]-->
+			<!--[endif]-->
 			<script src="__PUBLIC__/pace/pace.min.js"></script>
 			<script src="__HOME__/js/index.js"></script>
-		php;
+php;
 		return $link;
 	}
 
