@@ -55,7 +55,7 @@ class Article extends model {
 		// 反转义为下文的 preg_replace使用
 		$data['content'] = htmlspecialchars_decode( $data['content'] );
 		// 判断是否修改文章中图片的默认的alt 和title
-		$image_title_alt_word = C( 'IMAGE_TITLE_ALT_WORD' );
+		$image_title_alt_word = config( 'webconfig.IMAGE_TITLE_ALT_WORD' );
 		if ( ! empty( $image_title_alt_word ) ) {
 			// 修改图片默认的title和alt
 			$data['content'] = preg_replace( '/title=\"(?<=").*?(?=")\"/', 'title="白俊遥博客"', $data['content'] );
@@ -75,7 +75,7 @@ class Article extends model {
 				if ( ! empty( $image_path ) ) {
 					// 添加水印
 					//FIXME:对比项目config文件的内容有哪些需要添加
-					if ( config( 'WATER_TYPE' ) != 0 ) {
+					if ( config( 'webconfig.WATER_TYPE' ) != 0 ) {
 						foreach ( $image_path as $k => $v ) {
 							add_water( '.' . $v );
 						}
@@ -113,11 +113,12 @@ class Article extends model {
 	// 修改数据
 	public function editData() {
 		// 获取post数据
-		$data = I( 'post.' );
+		$request = new Request();
+		$data = $request->post();
 		// 反转义为下文的 preg_replace使用
 		$data['content'] = htmlspecialchars_decode( $data['content'] );
 		// 判断是否修改文章中图片的默认的alt 和title
-		$image_title_alt_word = C( 'IMAGE_TITLE_ALT_WORD' );
+		$image_title_alt_word = config( 'webconfig.IMAGE_TITLE_ALT_WORD' );
 		if ( ! empty( $image_title_alt_word ) ) {
 			// 修改图片默认的title和alt
 			$data['content'] = preg_replace( '/title=\"(?<=").*?(?=")\"/', 'title="白俊遥博客"', $data['content'] );
@@ -130,14 +131,14 @@ class Article extends model {
 			$aid = $data['aid'];
 			$this->where( array( 'aid' => $aid ) )->update();
 			$image_path = get_ueditor_image_path( $data['content'] );
-			D( 'ArticleTag' )->deleteData( $aid );
+			\model( 'ArticleTag' )->deleteData( $aid );
 			if ( isset( $data['tids'] ) ) {
-				D( 'ArticleTag' )->addData( $aid, $data['tids'] );
+				\model( 'ArticleTag' )->addData( $aid, $data['tids'] );
 			}
 			// 删除图片路径
 			\model( 'ArticlePic' )->deleteData( $aid );
 			if ( ! empty( $image_path ) ) {
-				if ( C( 'WATER_TYPE' ) != 0 ) {
+				if ( config( 'webconfig.WATER_TYPE' ) != 0 ) {
 					foreach ( $image_path as $k => $v ) {
 						add_water( '.' . $v );
 					}
@@ -154,7 +155,7 @@ class Article extends model {
 
 	// 彻底删除
 	public function deleteData() {
-		$aid = I( 'get.aid', 0, 'intval' );
+		$aid = input('aid',0,'intval');
 		\model( 'ArticlePic' )->deleteData( $aid );
 		\model( 'ArticleTag' )->deleteData( $aid );
 		$this->where( array( 'aid' => $aid ) )->delete();
@@ -380,9 +381,9 @@ class Article extends model {
 				'is_delete' => 0,
 			);
 
-			return $this->where( $where )->order( 'addtime desc' )->select();
+//			return $this->where( $where )->order( 'addtime desc' )->select();
+			return Db::table('qy_article')->where($where)->order('addtime desc')->select();
 		}
-
 	}
 
 	// 传递$map获取count数据

@@ -17,10 +17,9 @@
             <td><select class="form-control modal-sm" name="pid">
                 <option value="0">顶级栏目</option>
                 {volist name="data" key = "k" id="v"}
-                <foreach name="data" key="k" item="v">
                     <option value="{$v['cid']}"
-                    <if condition="$cid eq $v['cid']">selected="selected"</if>
-                    >{$v['_name']}</option>{/volist}
+                    {if condition="$cid eq $v['cid']"}selected="selected"{/if}
+                    >{$v['cname']}</option>{/volist}
             </select></td>
         </tr>
         <tr>

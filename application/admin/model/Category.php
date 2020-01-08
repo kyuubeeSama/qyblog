@@ -32,16 +32,12 @@ class Category extends Model {
 	public function editData() {
 		$request = new Request();
 		$data    = $request->post();
-		if ( $this->create( $data ) ) {
-			return $this->where( 'cid', $data['cid'] )->update( $data );
-		} else {
-			return false;
-		}
+		return $this->where('cid',$data['cid'])->update($data);
 	}
 
 	// 删除数据
-	public function deleteData( $cid = null ) {
-		$request = new Request();
+	public function deleteData( $cid = null) {
+		$request = \request();
 		$cid     = is_null( $cid ) ? $request->param( "cid" ) : $cid;
 		$child   = $this->getChildData( $cid );
 		if ( ! empty( $child ) ) {
@@ -49,7 +45,7 @@ class Category extends Model {
 
 			return false;
 		}
-		$articleData = D( 'Article' )->getDataByCid( $cid );
+		$articleData = \model( 'Article' )->getDataByCid( $cid );
 		if ( ! empty( $articleData ) ) {
 			$this->error = '请先删除此分类下的文章';
 
@@ -67,14 +63,13 @@ class Category extends Model {
 	public function getAllData( $field = 'all', $tree = true ) {
 		//FIXME:使用$this可以获取数据，但是获取的数据结果并不是直接结果
 		if ( $field == 'all' ) {
-			$rightdata = Db::table( 'qy_category' )->order( 'sort' )->select();
-			var_dump($rightdata);
-			echo "<br>";
-			$data = $this->order('sort')->select();
-			var_dump( $data);
+			$data = Db::table( 'qy_category' )->order( 'sort' )->select();
+//			var_dump($rightdata);
+//			echo "<br>";
+//			$data = $this->order('sort')->select();
+//			var_dump( $data);
 			if ( $tree ) {
 				$doData = new Data();
-
 				return $doData->tree( $data, 'cname' );
 			} else {
 				return $data;
@@ -97,7 +92,9 @@ class Category extends Model {
 	// 传递cid获得所有子栏目
 	public function getChildData( $cid ) {
 		$data  = $this->getAllData( 'all', false );
-		$child = Data::channelList( $data, $cid );
+		$dodata = new Data();
+		$child = $dodata->channelList($data,$cid);
+		$childs = array();
 		foreach ( $child as $k => $v ) {
 			$childs[] = $v['cid'];
 		}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0971ecc06a76c86d407878f8798df503",
+    "content-hash": "c0f046d9a155ad76342d30d7953bbe65",
     "packages": [
         {
             "name": "topthink/framework",
@@ -145,7 +145,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.0"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }

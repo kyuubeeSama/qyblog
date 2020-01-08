@@ -16,10 +16,10 @@
             <th>所属栏目</th>
             <td><select class="form-control modal-sm" name="pid">
                 <option value="0">顶级栏目</option>
-                <foreach name="data" key="k" item="v">
+                {volist name="data" key="k" id="v"}
                     <option value="{$v['cid']}"
-                    <if condition="$onedata['pid'] eq $v['cid']">selected="selected"</if>
-                    {$v['_html']}>{$v['_name']}</option></foreach>
+                    {if condition="$onedata['pid'] eq $v['cid']"}selected="selected"{/if}
+                    {$v['_html']}>{$v['cname']}</option>{/volist}
             </select></td>
         </tr>
         <tr>
