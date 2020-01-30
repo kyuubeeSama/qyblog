@@ -104,17 +104,4 @@ class Article extends AdminBase{
 			return View::fetch('edit');
 		}
 	}
-
-	// 彻底删除
-	public function delete(){
-		if($this->db->deleteData()){
-			$this->success('彻底删除成功');
-		}else{
-			$this->error('彻底删除失败');
-		}
-	}
-
-
-
-
 }

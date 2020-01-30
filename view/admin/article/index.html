@@ -52,7 +52,7 @@
             <td>{$v['click']}</td>
             <td>{$v['addtime']}</td>
             <td><a href="{:url('Admin/Article/edit',['aid'=>$v['aid']])}">修改</a> | <a
-                    href="javascript:if(confirm('确定要删除吗?')) location='{:url(\'Admin/article/delete\',[\'aid\'=>$v[\'aid\']])}'">删除</a>
+                    href="javascript:if(confirm('确定要删除吗?')) location='{:url(\'Admin/Recycle/recyle\',[\'table_name\'=>\'Article\',\'id_name\'=>\'aid\',\'id_number\'=>$v[\'aid\']])}'">删除</a>
             </td>
         </tr>
     {/volist}
