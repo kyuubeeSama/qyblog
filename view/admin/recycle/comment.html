@@ -21,13 +21,13 @@
         <tr>
             <td>{$v['cmtid']}</td>
             <td>{$v['nickname']}</td>
-            <td>{$v['date']|date='Y-m-d H:i:s',###}</td>
+            <td>{$v['date']|date='Y-m-d H:i:s'}</td>
             <td>{$v['content']}</td>
             <th>
                 {if condition = "$v['status'] eq 1"} ✔
                     {else/}
                     ✘
-                {/eq}
+                {/if}
             </th>
             <td>
                 <a href="{:url('Admin/Recycle/recover',['table_name'=>'Comment','id_name'=>'cmtid','id_number'=>$v['cmtid']])}">恢复</a>

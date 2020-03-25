@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>碎言列表</title>
-<!--    <bootstrapcss/>-->
     {Mytag:bootstrapcss}
 </head>
 <body>
@@ -20,7 +19,7 @@
     {volist name="data" id="v"}
         <tr>
             <td>{$v['chid']}</td>
-            <td>{$v['date']|date='Y-m-d H:i:s',###}</td>
+            <td>{$v['date']|date='Y-m-d H:i:s'}</td>
             <td>{$v['content']}</td>
             <th>
                 {if condition="$v['is_show'] eq 1"} ✔
@@ -34,7 +33,6 @@
         </tr>
     {/volist}
 </table>
-<!--<bootstrapjs/>-->
 {Tag:bootstrapjs}
 </body>
 </html>

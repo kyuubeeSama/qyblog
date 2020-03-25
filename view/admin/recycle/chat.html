@@ -16,10 +16,10 @@
         <th width="10%">操作</th>
     </tr>
     </thead>
-    {volist name="data" item="v"}
+    {volist name="data" id="v"}
         <tr>
             <td>{$v['chid']}</td>
-            <td>{$v['date']|date='Y-m-d H:i:s',###}</td>
+            <td>{$v['date']|date='Y-m-d H:i:s'}</td>
             <td>{$v['content']}</td>
             <th>
                 {if condition="$v['is_show'] eq 1"} ✔
