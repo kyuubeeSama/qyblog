@@ -54,5 +54,6 @@ return [
 	'COMMENT_REVIEW'            =>  '1',       // 评论审核1:开启 0:关闭
 	'COMMENT_SEND_EMAIL'        =>  '0',   // 被评论邮件通知1:开启 0:关闭
 	'EMAIL_RECEIVE'             =>  '',        // 接收评论通知邮箱
+    'THINK_INFORMATION'=>"6.0.2"
 
 ];

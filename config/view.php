@@ -22,10 +22,11 @@ return [
     'taglib_begin'  => '{',
     // 标签库标签结束标记
     'taglib_end'    => '}',
+    'taglib_pre_load' => 'app\tagLib\Mytag',
     // 替换模板
     'tpl_replace_string'    => [
     	'__PUBLIC__'        => '/static',
 	    '__HOME__'          => '/static/home',
 	    '__ADMIN__'         => '/static/admin'
-    ]
+    ],
 ];

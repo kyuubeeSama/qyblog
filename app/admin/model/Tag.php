@@ -71,10 +71,9 @@ Class Tag extends model{
 		if($field=='all'){
 			return $this->where('tid',$tid)->find();
 		}else{
-			return $this->field('tname')->where($tid,'tname')->find();
+			return $this->field($field)->where('tid',$tid)->find();
 		}
 	}
-
 	/**
 	 * 获取tname
 	 * @param array $tids 文章id

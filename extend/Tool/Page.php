@@ -89,8 +89,13 @@ class Page{
 	    $tmp = explode('/', Request()->pathinfo());
 	    define('m', strtolower($tmp[0]));
 	    define('c', strtolower($tmp[0]));
-	    define('a', strtolower(str_replace('.html', '', $tmp[1])));
-        $this->url = url(m.'/'.c.'/'.a, $this->parameter);
+	    if (!empty($tmp[1])){
+            define('a', strtolower(str_replace('.html', '', $tmp[1])));
+            $this->url = url(m.'/'.c.'/'.a, $this->parameter);
+        }else{
+            $this->url = url(m.'/'.c, $this->parameter);
+
+        }
         /* 计算分页信息 */
         $this->totalPages = ceil($this->totalRows / $this->listRows); //总页数
         if(!empty($this->totalPages) && $this->nowPage > $this->totalPages) {

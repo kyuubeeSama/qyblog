@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\tagLib;
+namespace app\tagLib;
 
 use think\template\taglib;
 
@@ -12,6 +12,7 @@ class Mytag extends TagLib {
 		'icheckjs'     => [ 'attr' => 'icheck', 'close' => 0 ],
 		'icheckcss'    => [ '', 'close' => '0' ],
 		'ueditor'      => [ 'attr' => 'name,content', 'close' => 0 ],
+        'animate'      => ['','close'=>'0'],
 
 	];
 
@@ -77,7 +78,14 @@ php;
 		$link = <<<php
                 <link rel="stylesheet" href="__PUBLIC__/iCheck-1.0.2/skins/all.css">
 php;
-
 		return $link;
 	}
+
+    //引入animate
+    public function taganimate() {
+        $link = <<<php
+                <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/animate.css">
+php;
+        return $link;
+    }
 }

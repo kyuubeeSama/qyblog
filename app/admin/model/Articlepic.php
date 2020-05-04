@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\model;
 use think\facade\Db;
+use think\facade\Log;
 use think\model;
 /**
  * 文章图片关联表model

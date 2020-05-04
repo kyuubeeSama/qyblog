@@ -22,7 +22,7 @@ class Comment extends Model {
 		$ouid     = $_SESSION['user']['id'];
 		$nickname = $_SESSION['user']['nickname'];
 //		$is_admin=M('Oauth_user')->getFieldById($ouid,'is_admin');
-		$is_admin        = Db::table( 'qy_Oauth_user' )->where( 'id', $ouid )->value( is_admin );
+		$is_admin        = Db::table( 'qy_oauth_user' )->where( 'id', $ouid )->value( is_admin );
 		$data['content'] = htmlspecialchars_decode( $data['content'] );
 		$data['content'] = preg_replace( '/on.+\".+\"/i', '', $data['content'] );
 		// 删除除img外的其他标签
@@ -204,11 +204,10 @@ html;
 	 */
 	public function getNewComment() {
 		// 获取后台管理员
-		$uids = Db::table( 'qy_oauth_user' )
-		          ->where( array( 'is_admin' ) )
-		          ->field( 'id' )
-		          ->find();
-//			->getField( 'id', true );
+        $uids = Db::table("qy_oauth_user")
+            ->where('is_admin',"1")
+            ->field('id')
+            ->find();
 		// 如果没有设置管理员；显示全部评论
 		if ( empty( $uids ) ) {
 			$map = [ 'c.is_delete' => 0 ];
@@ -230,6 +229,7 @@ html;
 		          ->order( 'c.date desc' )
 		          ->limit( 20 )
 		          ->select();
+		$data = $data->all();
 		foreach ( $data as $k => $v ) {
 			$data[ $k ]['date'] = word_time( $v['date'] );
 			// 截取文章标题

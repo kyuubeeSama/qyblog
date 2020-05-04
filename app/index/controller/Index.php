@@ -1,19 +1,194 @@
 <?php
 namespace app\index\controller;
 
+use app\admin\model\Category;
+use app\admin\model\Chat;
+use app\admin\model\Comment;
+use app\admin\model\Tag;
 use app\BaseController;
+use app\IndexBase;
+use app\Request;
+use think\console\Input;
+use think\facade\Db;
 use think\facade\Config;
+use app\admin\model\Article;
+use think\facade\View;
+use think\facade\Cookie;
+use think\Log;
 
-class Index extends BaseController
+class Index extends IndexBase
 {
-    public function index()
-    {
-    	echo Config::get('app.dispatch_success_tmpl');
-//        return '<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px;} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:) </h1><p> ThinkPHP V6<br/><span style="font-size:30px">13载初心不改 - 你值得信赖的PHP框架</span></p></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=64890268" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="eab4b9f840753f8e7"></think>';
+    // 首页
+    public function index(){
+        $article = new Article();
+        $articles = $article->getPageData();
+        $assign=array(
+            'articles'=>$articles['data'],
+            'page'=>$articles['page'],
+            'cid'=>'index'
+        );
+        View::assign($assign);
+        return View::fetch('index');
     }
 
-    public function hello($name = 'ThinkPHP6')
-    {
-        return 'hello,' . $name;
+    // 分类
+    public function category(){
+        $cid = input('get.cid','0','intval');
+        // 获取分类数据
+        $categoryModel = new Category();
+        $category = $categoryModel->getDataByCid($cid);
+        // 如果分类不存在；则返回404页面
+        if (empty($category)) {
+            header("HTTP/1.0  404  Not Found");
+            return View::fetch('./view/public/404.html');
+            exit(0);
+        }
+        // 获取分类下的文章数据
+        $article = new Article();
+        $articles = $article->getPageData($cid);
+        $assign=array(
+            'category'=>$category,
+            'articles'=>$articles['data'],
+            'page'=>$articles['page'],
+            'cid'=>$cid
+        );
+        View::assign($assign);
+        return View::fetch('category');
+    }
+
+    // 标签
+    public function tag(){
+        $tid = input('get.tid',0,'intval');
+        // 获取标签名
+        $tag = new Tag();
+        $tname = $tag->getDataByTid($tid,'tname');
+        // 如果标签不存在；则返回404页面
+        if (empty($tname)) {
+            header("HTTP/1.0  404  Not Found");
+            return View::fetch('./view/public/404.html');
+            exit(0);
+        }
+        // 获取文章数据
+        $article = new Article();
+        $articles = $article->getPageData('all',$tid);
+        $assign=array(
+            'articles'=>$articles['data'],
+            'page'=>$articles['page'],
+            'title'=>$tname,
+            'title_word'=>'拥有<span class="b-highlight">'.$tname.'</span>标签的文章',
+            'cid'=>'index'
+        );
+        View::assign($assign);
+        return View::fetch('tag');
+    }
+
+    // 文章内容
+    public function article(){
+        $aid = \input('get.aid',0,'intval');
+        $cid=intval(cookie('cid'));
+        $tid=intval(cookie('tid'));
+        $search_word=cookie('search_word');
+        $search_word=empty($search_word) ? 0 : $search_word;
+        $read=cookie('read');
+        // 判断是否已经记录过aid
+        if (array_key_exists($aid, $read)) {
+            // 判断点击本篇文章的时间是否已经超过一天
+            if ($read[$aid]-time()>=86400) {
+                $read[$aid]=time();
+                // 文章点击量+1
+                Db::table('qy_Article')->where('aid',$aid)->inc('click',1);
+            }
+        }else{
+            $read[$aid]=time();
+            // 文章点击量+1
+            Db::table('qy_Article')->where('aid',$aid)->inc('click',1);
+        }
+        cookie('read',$read,864000);
+        switch(true){
+            case $cid==0 && $tid==0 && $search_word==(string)0:
+                $map=array();
+                break;
+            case $cid!=0:
+                $map=array('cid'=>$cid);
+                break;
+            case $tid!=0:
+                $map=array('tid'=>$tid);
+                break;
+            case $search_word!==0:
+                $map=array('title'=>$search_word);
+                break;
+        }
+        // 获取文章数据
+        $articleModel = new Article();
+        $article = $articleModel->getDataByAid($aid,$map);
+        // 如果文章不存在；则返回404页面
+        if (empty($article['current']['aid'])) {
+            header("HTTP/1.0  404  Not Found");
+            return View::fetch('./view/public/404.html');
+            exit(0);
+        }
+        // 获取评论数据
+        $commentModel = new Comment();
+        $comment = $commentModel->getChildData($aid);
+        $assign=array(
+            'article'=>$article,
+            'comment'=>$comment,
+            'cid'=>$article['current']['cid']
+        );
+        if (!empty($_SESSION['user']['id'])) {
+            //TODO:待解决
+            $userData = Db::table('qy_oauth_user')->where('id',$_SESSION['user']['id'])->field('emial')->find();
+            $assign['user_email']=$userData['email'];
+        }
+        View::assign($assign);
+        return View::fetch('article');
+    }
+
+    // 随言碎语
+    public function chat(){
+        $chat = new Chat();
+        $assign=array(
+            'data'=>$chat->getDataByState(0,1),
+            'cid'=>'chat'
+        );
+        View::assign($assign);
+        return View::fetch('chat');
+    }
+
+    // 开源项目
+    public function git(){
+        $assign=array(
+            'cid'=>'git'
+        );
+        View::assign($assign);
+        return View::fetch('git');
+    }
+
+    // 站内搜索
+    public function search(){
+        $search_word = \input('get.search_word','','trim');
+        $article = new Article();
+        $articles = $article->getDataByTitle($search_word);
+        $assign=array(
+            'articles'=>$articles['data'],
+            'page'=>$articles['page'],
+            'title'=>$search_word,
+            'title_word'=>'搜索到的与<span class="b-highlight">'.$search_word.'</span>相关的文章',
+            'cid'=>'index'
+        );
+        View::assign($assign);
+        return View::fetch('tag');
+    }
+
+    // ajax评论文章
+    public function ajax_comment(){
+        $data = $this->request->post();
+        if(empty($data['content']) || !isset($_SESSION['user']['id'])){
+            die('未登录,或内容为空');
+        }else{
+            $comment = new Comment();
+            $cmtid = $comment->addData(1);
+            echo $cmtid;
+        }
     }
 }
