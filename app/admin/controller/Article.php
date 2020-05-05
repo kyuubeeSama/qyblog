@@ -1,6 +1,6 @@
 <?php
 namespace app\admin\controller;
-use app\admin\controller\AdminBase;
+use app\AdminBase;
 use think\facade\Config;
 use think\Model;
 use think\App;
@@ -61,7 +61,7 @@ class Article extends AdminBase{
 	// 向同步百度推送
 	public function baidu_site($aid){
 		$urls=array();
-		$urls[]=url('Home/Index/article',array('aid'=>$aid),'',true);
+		$urls[]=url('index/index/article',array('aid'=>$aid),'',true);
 		$api=config('webconfig.BAIDU_SITE_URL');
 		$ch=curl_init();
 		$options=array(

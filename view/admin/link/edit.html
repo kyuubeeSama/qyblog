@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>修改友情链接</title>
-<!--    <bootstrapcss/>-->
-<!--    <icheckcss/>-->
     {Mytag:bootstrapcss}
     {Mytag:icheckcss}
 </head>
 <body>
-<form class="form-group" action="{:U('Admin/Link/edit')}" method="post"><input type="hidden" name="lid"
+<form class="form-group" action="{:url('Admin/Link/edit')}" method="post"><input type="hidden" name="lid"
                                                                                value="{$data['lid']}">
     <table class="table table-bordered table-striped table-hover table-condensed">
         <tr>
@@ -39,8 +37,6 @@
         </tr>
     </table>
 </form>
-<!--<bootstrapjs/>-->
-<!--<icheckjs/>-->
 {Mytag:bootstrapjs}
 {Mytag:icheckjs color="blue"}
 </body>

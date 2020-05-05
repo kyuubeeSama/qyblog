@@ -285,41 +285,41 @@ function get_ip(){
  */
 function RU($url){
     // 兼容 category/:cid\d 路由
-    if(preg_match('/\/Home\/Index\/category\/cid\/\d+/', $url)){
-        $url=str_replace(array('/Home/Index','/cid'), '', $url);
+    if(preg_match('/\/index\/index\/category\/cid\/\d+/', $url)){
+        $url=str_replace(array('/index/index','/cid'), '', $url);
     }
     // 兼容 tag/:tid\d 路由
-    if(preg_match('/\/Home\/Index\/tag\/tid\/\d+/', $url)) {
-        $url=str_replace(array('/Home/Index','/tid'), '', $url);
+    if(preg_match('/\/index\/index\/tag\/tid\/\d+/', $url)) {
+        $url=str_replace(array('/index/index','/tid'), '', $url);
     }
     // 兼容article/cid/:cid\d/:aid\d
-    if(preg_match('/\/Home\/Index\/article\/cid\/\d+\/aid\/\d+/', $url)){
-        $url=str_replace(array('/Home/Index','/aid'), '', $url);
+    if(preg_match('/\/index\/index\/article\/cid\/\d+\/aid\/\d+/', $url)){
+        $url=str_replace(array('/index/index','/aid'), '', $url);
     }
     // 兼容 article/tid/:tid\d/:aid\d
-    if(preg_match('/\/Home\/Index\/article\/tid\/\d+\/aid\/\d+/', $url)){
-        $url=str_replace(array('/Home/Index','/aid'), '', $url);
+    if(preg_match('/\/index\/index\/article\/tid\/\d+\/aid\/\d+/', $url)){
+        $url=str_replace(array('/index/index','/aid'), '', $url);
     }
     // 兼容 article/sw/:search_word\S/:aid\d
-    if(preg_match('/\/Home\/Index\/article\/search_word\/\S+\/aid\/\d+/', $url)){
-        $url=str_replace(array('/Home/Index','/aid'), '', $url);
+    if(preg_match('/\/index\/index\/article\/search_word\/\S+\/aid\/\d+/', $url)){
+        $url=str_replace(array('/index/index','/aid'), '', $url);
         $url=str_replace('search_word', 'sw', $url);
     }
     // 兼容 article/:aid\d=>Index/article
-    if(preg_match('/\/Home\/Index\/article\/aid\/\d+/', $url)){
-        $url=str_replace(array('/Home/Index','/aid'), '', $url);
+    if(preg_match('/\/index\/index\/article\/aid\/\d+/', $url)){
+        $url=str_replace(array('/index/index','/aid'), '', $url);
     }
     // 兼容 index/:p\d=>'Index/index
-    if(preg_match('/\/Home\/Index\/index\/p/', $url)){
-        $url=str_replace('/Home/Index', '', $url);
+    if(preg_match('/\/index\/index\/index\/p/', $url)){
+        $url=str_replace('/index/index', '', $url);
         $url=str_replace('/p', '', $url);
     }
     // 兼容 chat
-    if($url=='/Home/Index/chat'){
+    if($url=='/index/index/chat'){
         $url='/chat';
     }
     // 兼容 git
-    if($url=='/Home/Index/git'){
+    if($url=='/index/index/git'){
         $url='/git';
     }
     return $url;

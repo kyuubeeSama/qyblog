@@ -3,6 +3,7 @@ namespace app\admin\controller;
 use think\App;
 use think\console\command\make\Model;
 use think\facade\View;
+use app\AdminBase;
 
 /**
  * 网站设置
@@ -28,7 +29,7 @@ class Config extends AdminBase {
 		}else{
 			$data=$this->db->getAllData();
 			View::assign('data',$data);
-			View::fetch('index');
+			return View::fetch('index');
 		}
 	}
 
@@ -41,7 +42,7 @@ class Config extends AdminBase {
 				$this->error($this->db->getError());
 			}
 		}else{
-			View::fetch('change_password');
+			return View::fetch('change_password');
 		}
 	}
 

@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use think\facade\View;
 use think\facade\Request;
 use think\App;
+use app\AdminBase;
 
 /**
  * 标签管理

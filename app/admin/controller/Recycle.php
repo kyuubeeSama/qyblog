@@ -10,12 +10,12 @@ use think\facade\Db;
 class Recycle extends BaseController {
 	//空操作 自动载入当前模板
 	public function _empty($name){
-		View::fetch($name);
+		return View::fetch($name);
 	}
 
 	// 回收站首页
 	public function index(){
-		View::fetch('index');
+		return View::fetch('index');
 	}
 
 	// 已删文章
@@ -26,7 +26,7 @@ class Recycle extends BaseController {
 			'data'=>$data['data'],
 			'page'=>$data['page']
 		]);
-		View::fetch('article');
+		return View::fetch('article');
 	}
 
 	// 已删评论
@@ -37,7 +37,7 @@ class Recycle extends BaseController {
 			'data'=>$data['data'],
 			'page'=>$data['page']
 		]);
-		View::fetch('comment');
+		return View::fetch('comment');
 	}
 
 	// 已删友情链接
@@ -55,7 +55,7 @@ class Recycle extends BaseController {
 		$chat = new \app\admin\model\Chat();
 		$data = $chat->getDataByState(1);
 		View::assign('data',$data);
-		View::fetch('chat');
+		return View::fetch('chat');
 	}
 
 	// 根据$_GET数组放入回收站

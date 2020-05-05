@@ -21,7 +21,7 @@ class Chat extends BaseController {
 	public function index(){
 		$data=$this->db->getDataByState(0,'all');
 		View::assign('data',$data);
-		View::fetch('index');
+		return View::fetch('index');
 //		$this->assign('data',$data);
 //		$this->display();
 	}
@@ -35,7 +35,7 @@ class Chat extends BaseController {
 				$this->error('添加失败');
 			}
 		}else{
-			View::fetch('add');
+			return View::fetch('add');
 		}
 
 	}
@@ -52,7 +52,7 @@ class Chat extends BaseController {
 			$chid = $this->request->param('chid');
 			$data=$this->db->getDataByLid($chid);
 			View::assign('data',$data);
-			View::fetch('edit');
+			return View::fetch('edit');
 		}
 	}
 }

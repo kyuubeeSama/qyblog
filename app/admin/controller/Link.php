@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 use think\App;
 use think\facade\View;
+use app\AdminBase;
 
 /**
  * 友情链接管理
@@ -20,7 +21,7 @@ class Link extends AdminBase {
 	public function index(){
 		$data=$this->db->getDataByState(0,'all');
 		View::assign('data',$data);
-		View::fetch('index');
+		return View::fetch('index');
 //		$this->assign('data',$data);
 //		$this->display();
 	}
@@ -34,7 +35,7 @@ class Link extends AdminBase {
 				$this->error('添加失败');
 			}
 		}else{
-			View::fetch('add');
+			return View::fetch('add');
 //			$this->display();
 		}
 
@@ -53,7 +54,7 @@ class Link extends AdminBase {
 			$lid = $this->request->param('lid');
 			$data=$this->db->getDataByLid($lid);
 			View::assign('data',$data);
-			View::fetch('edit');
+			return View::fetch('edit');
 //			$this->assign('data',$data);
 //			$this->display();
 		}

@@ -3,44 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>网站信息</title>
-	<bootstrapcss />
-	<icheckcss />
+	{Mytag:bootstrapcss}
+	{Mytag:icheckcss}
 </head>
 <body>
 <form action="{:url('Admin/Config/index')}" method="post">
 	<ul class="nav nav-tabs">
-		<li class="active">
-			<a href="#basic" data-toggle="tab">网站设置</a>
+		<li class="nav-item">
+			<a href="#basic" data-toggle="tab" class="nav-link active">网站设置</a>
 		</li>
-		<li>
-			<a href="#seo" data-toggle="tab">优化推广</a>
+		<li class="nav-item">
+			<a href="#seo" data-toggle="tab" class="nav-link">优化推广</a>
 		</li>
-		<li>
-			<a href="#water" data-toggle="tab">文章水印</a>
+		<li class="nav-item">
+			<a href="#water" data-toggle="tab" class="nav-link">文章水印</a>
 		</li>
-		<li>
-			<a href="#oauth" data-toggle="tab">第三方登录</a>
+		<li class="nav-item">
+			<a href="#oauth" data-toggle="tab" class="nav-link">第三方登录</a>
 		</li>
-		<li>
-			<a href="#other" data-toggle="tab">其他第三方接口</a>
+		<li class="nav-item">
+			<a href="#other" data-toggle="tab" class="nav-link">其他第三方接口</a>
 		</li>
-		<li>
-			<a href="#email" data-toggle="tab">邮箱设置</a>
+		<li class="nav-item">
+			<a href="#email" data-toggle="tab" class="nav-link">邮箱设置</a>
 		</li>
-		<li>
-			<a href="#comment" data-toggle="tab">评论设置</a>
+		<li class="nav-item">
+			<a href="#comment" data-toggle="tab" class="nav-link">评论设置</a>
 		</li>
 	</ul>
 	<div class="tab-content">
-		<div class="tab-pane fade in active" id="basic">
+		<div class="tab-pane  container active" id="basic">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>网站状态：</th>
 					<td>
 						<span class="inputword">开启</span>
-						<input class="icheck" type="radio" name="WEB_STATUS" value="1" <eq name="data['WEB_STATUS']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="WEB_STATUS" value="1" {eq name="data['WEB_STATUS']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">关闭</span>
-						<input class="icheck" type="radio" name="WEB_STATUS" value="0" <eq name="data['WEB_STATUS']" value="0">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="WEB_STATUS" value="0" {eq name="data['WEB_STATUS']" value="0"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
@@ -63,7 +63,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="seo">
+		<div class="tab-pane container" id="seo">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>网站名：</th>
@@ -103,17 +103,17 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="water">
+		<div class="tab-pane container" id="water">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>水印类型：</th>
 					<td>
 						<span class="inputword">文字水印</span>
-						<input class="icheck" type="radio" name="WATER_TYPE" value="1" <eq name="data['WATER_TYPE']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="WATER_TYPE" value="1" {eq name="data['WATER_TYPE']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">图片水印</span>
-						<input class="icheck" type="radio" name="WATER_TYPE" value="2" <eq name="data['WATER_TYPE']" value="2">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="WATER_TYPE" value="2" {eq name="data['WATER_TYPE']" value="2"}checked="checked"{/eq} >
 						<span class="inputword">关闭水印</span>
-						<input class="icheck" type="radio" name="WATER_TYPE" value="0" <eq name="data['WATER_TYPE']" value="0">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="WATER_TYPE" value="0" {eq name="data['WATER_TYPE']" value="0"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
@@ -150,25 +150,25 @@
 					<th>文字水印位置：</th>
 					<td>
 						<span class="inputword">上左</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="1" <eq name="data['TEXT_WATER_LOCATE']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="1" {eq name="data['TEXT_WATER_LOCATE']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">上中</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="2" <eq name="data['TEXT_WATER_LOCATE']" value="2">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="2" {eq name="data['TEXT_WATER_LOCATE']" value="2"}checked="checked"{/eq} >
 						<span class="inputword">上右</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="3" <eq name="data['TEXT_WATER_LOCATE']" value="3">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="3" {eq name="data['TEXT_WATER_LOCATE']" value="3"}checked="checked"{/eq} >
 						<br>
 						<span class="inputword">中左</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="4" <eq name="data['TEXT_WATER_LOCATE']" value="4">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="4" {eq name="data['TEXT_WATER_LOCATE']" value="4"}checked="checked"{/eq} >
 						<span class="inputword">中中</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="5" <eq name="data['TEXT_WATER_LOCATE']" value="5">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="5" {eq name="data['TEXT_WATER_LOCATE']" value="5"}checked="checked"{/eq} >
 						<span class="inputword">中右</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="6" <eq name="data['TEXT_WATER_LOCATE']" value="6">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="6" {eq name="data['TEXT_WATER_LOCATE']" value="6"}checked="checked"{/eq} >
 						<br>
 						<span class="inputword">下左</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="7" <eq name="data['TEXT_WATER_LOCATE']" value="7">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="7" {eq name="data['TEXT_WATER_LOCATE']" value="7"}checked="checked"{/eq} >
 						<span class="inputword">下中</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="8" <eq name="data['TEXT_WATER_LOCATE']" value="8">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="8" {eq name="data['TEXT_WATER_LOCATE']" value="8"}checked="checked"{/eq} >
 						<span class="inputword">下右</span>
-						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="9" <eq name="data['TEXT_WATER_LOCATE']" value="9">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="TEXT_WATER_LOCATE" value="9" {eq name="data['TEXT_WATER_LOCATE']" value="9"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
@@ -181,25 +181,25 @@
 					<th>图片水印位置：</th>
 					<td>
 						<span class="inputword">上左</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="1" <eq name="data['IMAGE_WATER_LOCATE']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="1" {eq name="data['IMAGE_WATER_LOCATE']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">上中</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="2" <eq name="data['IMAGE_WATER_LOCATE']" value="2">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="2" {eq name="data['IMAGE_WATER_LOCATE']" value="2"}checked="checked"{/eq} >
 						<span class="inputword">上右</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="3" <eq name="data['IMAGE_WATER_LOCATE']" value="3">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="3" {eq name="data['IMAGE_WATER_LOCATE']" value="3"}checked="checked"{/eq} >
 						<br>
 						<span class="inputword">中左</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="4" <eq name="data['IMAGE_WATER_LOCATE']" value="4">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="4" {eq name="data['IMAGE_WATER_LOCATE']" value="4"}checked="checked"{/eq} >
 						<span class="inputword">中中</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="5" <eq name="data['IMAGE_WATER_LOCATE']" value="5">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="5" {eq name="data['IMAGE_WATER_LOCATE']" value="5"}checked="checked"{/eq} >
 						<span class="inputword">中右</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="6" <eq name="data['IMAGE_WATER_LOCATE']" value="6">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="6" {eq name="data['IMAGE_WATER_LOCATE']" value="6"}checked="checked"{/eq} >
 						<br>
 						<span class="inputword">下左</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="7" <eq name="data['IMAGE_WATER_LOCATE']" value="7">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="7" {eq name="data['IMAGE_WATER_LOCATE']" value="7"}checked="checked"{/eq} >
 						<span class="inputword">下中</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="8" <eq name="data['IMAGE_WATER_LOCATE']" value="8">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="8" {eq name="data['IMAGE_WATER_LOCATE']" value="8"}checked="checked"{/eq} >
 						<span class="inputword">下右</span>
-						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="9" <eq name="data['IMAGE_WATER_LOCATE']" value="9">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="IMAGE_WATER_LOCATE" value="9" {eq name="data['IMAGE_WATER_LOCATE']" value="9"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
@@ -210,7 +210,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="oauth">
+		<div class="tab-pane container" id="oauth">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>QQ登录APP ID：</th>
@@ -298,7 +298,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="other">
+		<div class="tab-pane container" id="other">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>百度推送site提交链接：</th>
@@ -314,7 +314,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="email">
+		<div class="tab-pane container" id="email">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>SMTP服务器：</th>
@@ -342,24 +342,24 @@
 				</tr>
 			</table>
 		</div>
-		<div class="tab-pane fade" id="comment">
+		<div class="tab-pane container" id="comment">
 			<table class="table table-bordered table-hover">
 				<tr>
 					<th>开启评论审核：</th>
 					<td>
 						<span class="inputword">开启</span>
-						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="1" <eq name="data['COMMENT_REVIEW']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="1" {eq name="data['COMMENT_REVIEW']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">关闭</span>
-						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="0" <eq name="data['COMMENT_REVIEW']" value="0">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="COMMENT_REVIEW" value="0" {eq name="data['COMMENT_REVIEW']" value="0"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
 					<th>发送被评论邮件：</th>
 					<td>
 						<span class="inputword">开启</span>
-						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="1" <eq name="data['COMMENT_SEND_EMAIL']" value="1">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="1" {eq name="data['COMMENT_SEND_EMAIL']" value="1"}checked="checked"{/eq} >
 						<span class="inputword">关闭</span>
-						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="0" <eq name="data['COMMENT_SEND_EMAIL']" value="0">checked="checked"</eq> >
+						<input class="icheck" type="radio" name="COMMENT_SEND_EMAIL" value="0" {eq name="data['COMMENT_SEND_EMAIL']" value="0"}checked="checked"{/eq} >
 					</td>
 				</tr>
 				<tr>
@@ -375,7 +375,7 @@
 		<input class="btn btn-success" type="submit" value="提交">
 	</div>
 </form>
-<bootstrapjs />
-<icheckjs />
+{Mytag:bootstrapjs}
+{Mytag:icheckjs color="blue"}
 </body>
 </html>

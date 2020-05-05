@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 
+use app\AdminBase;
 use app\BaseController;
 use think\App;
 use think\facade\Config;
@@ -25,7 +26,7 @@ class Comment extends BaseController {
 		$data=$this->db->getDataByState(0);
 		View::assign($data);
 		View::assign('COMMENT_REVIEW',Config::get('webconfig.COMMENT_REVIEW'));
-		View::fetch('index');
+		return View::fetch('index');
 	}
 
 	// 通过或者取消审核

@@ -341,10 +341,10 @@ class Article extends model {
             }
             // 如果不为空 添加url
             if ( ! empty( $data['prev'] ) ) {
-                $data['prev']['url'] = url( 'Home/Index/article/', array( 'aid' => $data['prev']['aid'] ) );
+                $data['prev']['url'] = url( 'index/index/article/', array( 'aid' => $data['prev']['aid'] ) );
             }
             if ( ! empty( $data['next'] ) ) {
-                $data['next']['url'] = url( 'Home/Index/article/', array( 'aid' => $data['next']['aid'] ) );
+                $data['next']['url'] = url( 'index/index/article/', array( 'aid' => $data['next']['aid'] ) );
             }
             $data['current']             = $this->where( array( 'aid' => $aid ) )->find();
             $data['current']['tids']     = $articletag->getDataByAid( $aid );
@@ -373,7 +373,7 @@ class Article extends model {
             ->select();
         foreach ( $list as $k => $v ) {
             $list[ $k ]['pic_path'] = $articlepic->getDataByAid( $v['aid'] );
-            $list[ $k ]['url']      = url( 'Home/Index/article/', array(
+            $list[ $k ]['url']      = url( 'index/index/article/', array(
                 'search_word' => $search_word,
                 'aid'         => $v['aid']
             ) );

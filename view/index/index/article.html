@@ -23,11 +23,11 @@
                     <ul class="row b-metadata">
                         <li class="col-xs-5 col-md-2 col-lg-3"><i class="fa fa-user"></i> {$article['current']['author']}</li>
                         <li class="col-xs-7 col-md-3 col-lg-3"><i class="fa fa-calendar"></i> {$article['current']['addtime']|date='Y-m-d H:i:s',###}</li>
-                        <li class="col-xs-5 col-md-2 col-lg-2"><i class="fa fa-list-alt"></i> <a href="{:url('Home/Index/category',array('cid'=>$article['current']['category']['cid']))}">{$article['current']['category']['cname']}</a>
+                        <li class="col-xs-5 col-md-2 col-lg-2"><i class="fa fa-list-alt"></i> <a href="{:url('index/index/category',array('cid'=>$article['current']['category']['cid']))}">{$article['current']['category']['cname']}</a>
                         {if condition="!empty($article['current']['tag'])"}
                             <li class="col-xs-7 col-md-5 col-lg-4 "><i class="fa fa-tags"></i>
                                 {volist name="article['current']['tag']" id="v"}
-                                    <a class="b-tag-name" href="{:url('Home/Index/tag',array('tid'=>$v['tid']))}">{$v['tname']}</a>
+                                    <a class="b-tag-name" href="{:url('index/index/tag',array('tid'=>$v['tid']))}">{$v['tname']}</a>
                                 {/volist}
                             </li>
                         {/if}
@@ -87,7 +87,7 @@
 <js file="__PUBLIC__/static/layer-2.4/layer.js" />
 <script type="text/javascript">
     SyntaxHighlighter.all();
-    ajaxCommentUrl="{:url('Home/Index/ajax_comment','','',true)}";
+    ajaxCommentUrl="{:url('index/index/ajax_comment','','',true)}";
     check_login="{:url('Home/User/check_login','','',true)}";
 </script>
 <js file="__HOME_JS__/comment.js" />

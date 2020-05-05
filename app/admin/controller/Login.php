@@ -27,4 +27,15 @@ class Login extends BaseController
 			$this->error("验证码输入错误","admin/login/index");
 		}
 	}
+
+	// 退出登录
+	public function logout(){
+		session('admin',null);
+		$this->success('退出成功',url('admin/login/login'));
+	}
+
+	// 生成验证码
+	public function showVerify(){
+		show_verify();
+	}
 }

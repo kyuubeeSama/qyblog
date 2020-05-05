@@ -57,7 +57,7 @@ class Comment extends Model {
 //				$title=M('Article')->getFieldByAid($data['aid'],'title');
 				$title = Db::table( 'qy_article' )->where( 'aid', $data['aid'] )->value( 'title' );
 //				$url=U('Home/Index/article',array('aid'=>$data['aid']),'',true);
-				$url     = url( 'Home/Index/article', [ 'aid' => $data['aid'] ], '', true );
+				$url     = url( 'index/index/article', [ 'aid' => $data['aid'] ], '', true );
 				$date    = date( 'Y-m-d H:i:s' );
 				$content = <<<html
 站长你好：<br>
@@ -79,7 +79,7 @@ html;
 				$parent_name = $parent_data['nickname'];
 //				$title=M('Article')->getFieldByAid($data['aid'],'title');
 				$title          = Db::table( 'qy_article' )->where( 'aid', $data['aid'] )->value( 'title' );
-				$url            = url( 'Home/Index/article', [ 'aid' => $data['aid'] ], '', true );
+				$url            = url( 'index/index/article', [ 'aid' => $data['aid'] ], '', true );
 				$date           = date( 'Y-m-d H:i:s' );
 				$parent_content = <<<html
 $parent_name你好：<br>
