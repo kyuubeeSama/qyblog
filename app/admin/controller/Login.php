@@ -14,24 +14,26 @@ class Login extends BaseController
 	public function login(){
 		$password = input('password','','trim');
 		$verify = input('verify','','trim');
-		if(captcha_check($verify)){
-			$passwordData = Db::table('qy_config')->where('name','ADMIN_PASSWORD')->value('value');
-			if ( md5( $password ) == $passwordData ) {
-				session( 'admin', 'is_login' );
-				session( 'ADMIN_PASSWORD', null );
-				$this->success('登录成功','admin/index/index');
-			} else {
-				$this->error( '密码输入错误', 'admin/login/login');
+		if ($this->request->isPost()){
+			if(captcha_check($verify)){
+				$passwordData = Db::table('qy_config')->where('name','ADMIN_PASSWORD')->value('value');
+				if ( md5( $password ) == $passwordData ) {
+					session( 'admin', 'is_login' );
+					session( 'ADMIN_PASSWORD', null );
+					$this->success('登录成功','admin/index/index');
+				} else {
+					$this->error( '密码输入错误', 'admin/login/index');
+				}
+			}else{
+				$this->error("验证码输入错误","admin/login/index");
 			}
-		}else{
-			$this->error("验证码输入错误","admin/login/index");
 		}
 	}
 
 	// 退出登录
 	public function logout(){
 		session('admin',null);
-		$this->success('退出成功',url('admin/login/login'));
+		$this->success('退出成功',url('admin/login/index'));
 	}
 
 	// 生成验证码

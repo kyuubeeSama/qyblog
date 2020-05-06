@@ -23,7 +23,7 @@ class AdminBase extends BaseController {
 				die('请在前台页面通过第三方账号登录');
 			}else{
 				Log::write("跳转到后台登录");
-				redirect(url('Admin/Login/login'));
+				$this->redirect(url('admin/login/index'));
 			}
 		}
 	}

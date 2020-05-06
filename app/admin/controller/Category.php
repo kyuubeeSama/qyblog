@@ -2,13 +2,14 @@
 
 namespace app\admin\controller;
 
+use app\AdminBase;
 use think\App;
 use app\BaseController;
 use think\facade\Log;
 use think\Request;
 use think\facade\View;
 
-class Category extends BaseController {
+class Category extends AdminBase {
 	//定义数据表
 	private $db;
 

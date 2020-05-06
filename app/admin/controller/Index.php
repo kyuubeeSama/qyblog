@@ -1,11 +1,12 @@
 <?php
 namespace app\admin\controller;
 
+use app\AdminBase;
 use app\BaseController;
 use think\facade\Db;
 use think\facade\View;
 
-class Index extends BaseController
+class Index extends AdminBase
 {
 	// 后台首页
 	public function index(){

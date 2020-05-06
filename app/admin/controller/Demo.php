@@ -3,11 +3,12 @@
 namespace app\admin\controller;
 
 
+use app\AdminBase;
 use app\BaseController;
 use think\facade\Session;
 use think\facade\View;
 
-class Demo extends BaseController {
+class Demo extends AdminBase {
 
 	public function index(){
 		if ($this->request->isPost()){

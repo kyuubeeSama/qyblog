@@ -11,7 +11,7 @@ use think\facade\View;
 /**
  * 评论管理
  */
-class Comment extends BaseController {
+class Comment extends AdminBase {
 	// 定义数据
 	private $db;
 

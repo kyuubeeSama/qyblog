@@ -1,5 +1,6 @@
 <?php
 namespace app\admin\controller;
+use app\AdminBase;
 use app\BaseController;
 use think\facade\View;
 use think\facade\Db;
@@ -7,7 +8,7 @@ use think\facade\Db;
 /**
  * 回收管理
  */
-class Recycle extends BaseController {
+class Recycle extends AdminBase {
 	//空操作 自动载入当前模板
 	public function _empty($name){
 		return View::fetch($name);

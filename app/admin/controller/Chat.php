@@ -1,5 +1,6 @@
 <?php
 namespace app\admin\controller;
+use app\AdminBase;
 use app\BaseController;
 use think\App;
 use think\facade\View;
@@ -8,7 +9,7 @@ use think\facade\View;
 /**
  * 随言碎语管理
  */
-class Chat extends BaseController {
+class Chat extends AdminBase {
 	// 定义数据
 	private $db;
 
