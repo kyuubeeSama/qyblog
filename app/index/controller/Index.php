@@ -22,11 +22,11 @@ class Index extends IndexBase
     public function index(){
         $article = new Article();
         $articles = $article->getPageData();
-        $assign=array(
+        $assign=[
             'articles'=>$articles['data'],
             'page'=>$articles['page'],
             'cid'=>'index'
-        );
+        ];
         View::assign($assign);
         return View::fetch('index');
     }
@@ -37,6 +37,7 @@ class Index extends IndexBase
         // 获取分类数据
         $categoryModel = new Category();
         $category = $categoryModel->getDataByCid($cid);
+        var_dump($category);
         // 如果分类不存在；则返回404页面
         if (empty($category)) {
             header("HTTP/1.0  404  Not Found");
@@ -46,12 +47,12 @@ class Index extends IndexBase
         // 获取分类下的文章数据
         $article = new Article();
         $articles = $article->getPageData($cid);
-        $assign=array(
-            'category'=>$category,
-            'articles'=>$articles['data'],
-            'page'=>$articles['page'],
-            'cid'=>$cid
-        );
+        $assign=[
+	        'category'=>$category,
+	        'articles'=>$articles['data'],
+	        'page'=>$articles['page'],
+	        'cid'=>$cid
+        ];
         View::assign($assign);
         return View::fetch('category');
     }
@@ -71,13 +72,13 @@ class Index extends IndexBase
         // 获取文章数据
         $article = new Article();
         $articles = $article->getPageData('all',$tid);
-        $assign=array(
+        $assign=[
             'articles'=>$articles['data'],
             'page'=>$articles['page'],
             'title'=>$tname,
             'title_word'=>'拥有<span class="b-highlight">'.$tname.'</span>标签的文章',
             'cid'=>'index'
-        );
+        ];
         View::assign($assign);
         return View::fetch('tag');
     }
@@ -109,13 +110,13 @@ class Index extends IndexBase
                 $map=array();
                 break;
             case $cid!=0:
-                $map=array('cid'=>$cid);
+                $map=['cid'=>$cid];
                 break;
             case $tid!=0:
-                $map=array('tid'=>$tid);
+                $map=['tid'=>$tid];
                 break;
             case $search_word!==0:
-                $map=array('title'=>$search_word);
+                $map=['title'=>$search_word];
                 break;
         }
         // 获取文章数据
@@ -130,11 +131,11 @@ class Index extends IndexBase
         // 获取评论数据
         $commentModel = new Comment();
         $comment = $commentModel->getChildData($aid);
-        $assign=array(
+        $assign=[
             'article'=>$article,
             'comment'=>$comment,
             'cid'=>$article['current']['cid']
-        );
+        ];
         if (!empty($_SESSION['user']['id'])) {
             //TODO:待解决
             $userData = Db::table('qy_oauth_user')->where('id',$_SESSION['user']['id'])->field('emial')->find();
@@ -147,19 +148,19 @@ class Index extends IndexBase
     // 随言碎语
     public function chat(){
         $chat = new Chat();
-        $assign=array(
+        $assign=[
             'data'=>$chat->getDataByState(0,1),
             'cid'=>'chat'
-        );
+        ];
         View::assign($assign);
         return View::fetch('chat');
     }
 
     // 开源项目
     public function git(){
-        $assign=array(
+        $assign=[
             'cid'=>'git'
-        );
+        ];
         View::assign($assign);
         return View::fetch('git');
     }
@@ -169,13 +170,13 @@ class Index extends IndexBase
         $search_word = \input('get.search_word','','trim');
         $article = new Article();
         $articles = $article->getDataByTitle($search_word);
-        $assign=array(
+        $assign=[
             'articles'=>$articles['data'],
             'page'=>$articles['page'],
             'title'=>$search_word,
             'title_word'=>'搜索到的与<span class="b-highlight">'.$search_word.'</span>相关的文章',
             'cid'=>'index'
-        );
+        ];
         View::assign($assign);
         return View::fetch('tag');
     }

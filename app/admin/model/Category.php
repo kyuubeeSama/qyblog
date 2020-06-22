@@ -12,10 +12,10 @@ use Tool\Data;
  */
 class Category extends Model {
 	// 自动验证
-	protected $_validate = array(
-		array( 'cname', 'require', '分类名不能为空' ),
-		array( 'sort', 'number', '排序必须为数字' ),
-	);
+	protected $_validate = [
+		 ['cname', 'require', '分类名不能为空' ],
+		['sort', 'number', '排序必须为数字' ],
+	];
 
 	//添加数据
 	/**

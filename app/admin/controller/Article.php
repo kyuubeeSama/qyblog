@@ -61,16 +61,16 @@ class Article extends AdminBase{
 	// 向同步百度推送
 	public function baidu_site($aid){
 		$urls=array();
-		$urls[]=url('index/index/article',array('aid'=>$aid),'',true);
+		$urls[]=url('index/index/article',['aid'=>$aid],'',true);
 		$api=config('webconfig.BAIDU_SITE_URL');
 		$ch=curl_init();
-		$options=array(
+		$options=[
 			CURLOPT_URL=>$api,
 			CURLOPT_POST=>true,
 			CURLOPT_RETURNTRANSFER=>true,
 			CURLOPT_POSTFIELDS=>implode("\n", $urls),
-			CURLOPT_HTTPHEADER=>array('Content-Type: text/plain'),
-		);
+			CURLOPT_HTTPHEADER=>['Content-Type: text/plain'],
+		];
 		curl_setopt_array($ch, $options);
 		$result=curl_exec($ch);
 		$msg=json_decode($result,true);

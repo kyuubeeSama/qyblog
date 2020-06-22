@@ -67,10 +67,10 @@ class Link extends AdminBase {
 		$data=I('post.');
 		if (!empty($data)) {
 			foreach ($data as $k => $v) {
-				$this->db->where(array('lid'=>$k))->save(array('sort'=>$v));
+				$this->db->where(['lid'=>$k])->save(['sort'=>$v]);
 			}
 		}
-		$this->success('修改成功',U('Admin/Link/index'));
+		$this->success('修改成功',url('Admin/Link/index'));
 	}
 
 

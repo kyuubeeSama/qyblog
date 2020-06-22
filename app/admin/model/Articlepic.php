@@ -39,7 +39,7 @@ class Articlepic extends model{
 		$root_path=rtrim($_SERVER['SCRIPT_NAME'],'/index.php');
 		if ($data->isEmpty()){
 			//FIXME:设置默认图片
-			return "https://www.baidu.com";
+			return "";
 		}else{
 			$data[0]['path']=$root_path.$data[0]['path'];
 			return $data[0]['path'];

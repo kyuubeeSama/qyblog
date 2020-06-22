@@ -8,7 +8,7 @@
                 {php}$tag_i++;{/php}
                 {php}$tag_i=$tag_i==5?1:$tag_i;{/php}
                 <li class="b-tname">
-                    <a class="tstyle-{$tag_i}" href="{:url('index/index/tag',array('tid'=>$v['tid']))}" onclick="return recordId('tid',{$v['tid']})">{$v['tname']} ({$v['count']})</a>
+                    <a class="tstyle-{$tag_i}" href="{:url('index/index/tag',['tid'=>$v['tid']])}" onclick="return recordId('tid',{$v['tid']})">{$v['tname']} ({$v['count']})</a>
                 </li>
             {/foreach}
         </ul>
@@ -17,7 +17,7 @@
         <h4 class="b-title">置顶推荐</h4>
         <p class="b-recommend-p">
             {foreach name="recommend" item="v"}
-                <a class="b-recommend-a" href="{:url('index/index/article',array('aid'=>$v['aid']))}" target="_blank"><span class="fa fa-th-list b-black"></span> {$v['title']}</a>
+                <a class="b-recommend-a" href="{:url('index/index/article',['aid'=>$v['aid']])}" target="_blank"><span class="fa fa-th-list b-black"></span> {$v['title']}</a>
             {/foreach}
         </p>
     </div>

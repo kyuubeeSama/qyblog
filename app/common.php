@@ -164,7 +164,7 @@ function send_email($address,$subject,$content){
     $email_password=Config::get('webconfig.EMAIL_PASSWORD');
     $email_from_name=Config::get('webconfig.EMAIL_FROM_NAME');
     if(empty($email_smtp) || empty($email_username) || empty($email_password) || empty($email_from_name)){
-        return array("error"=>1,"message"=>'邮箱配置不完整');
+        return ["error"=>1,"message"=>'邮箱配置不完整'];
     }
     require './ThinkPHP/Library/Org/Bjy/class.phpmailer.php';
     require './ThinkPHP/Library/Org/Bjy/class.smtp.php';
@@ -197,9 +197,9 @@ function send_email($address,$subject,$content){
     // 发送邮件。
     if(!$phpmailer->Send()) {
         $phpmailererror=$phpmailer->ErrorInfo;
-        return array("error"=>1,"message"=>$phpmailererror);
+        return ["error"=>1,"message"=>$phpmailererror];
     }else{
-        return array("error"=>0);
+        return ["error"=>0];
     }
 }
 

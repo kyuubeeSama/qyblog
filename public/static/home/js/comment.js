@@ -6,7 +6,7 @@ function getTuzki(e) {
         t.show();
         for (var a = ["Kiss", "Love", "Yeah", "啊！", "背扭", "顶", "抖胸", "88", "汗", "瞌睡", "鲁拉", "拍砖", "揉脸", "生日快乐", "摊手", "睡觉", "瘫坐", "无聊", "星星闪", "旋转", "也不行", "郁闷", "正Music", "抓墙", "撞墙至死", "歪头", "戳眼", "飘过", "互相拍砖", "砍死你", "扔桌子", "少林寺", "什么？", "转头", "我爱牛奶", "我踢", "摇晃", "晕厥", "在笼子里", "震荡"], i = "", l = 1; l < 41; l++) {
             var s = formatNum(l, 4);
-            i += '<img src="http://' + window.location.host + "/Public/emote/tuzki/t_" + s + '.gif" title="' + a[l - 1] + '" alt="白俊遥博客">'
+            i += '<img src="http://' + window.location.host + "/Public/emote/tuzki/t_" + s + '.gif" title="' + a[l - 1] + '" alt="青云博客">'
         }
         t.html(i), tuzkiNumber = 0
     } else t.hide(), tuzkiNumber = 1
@@ -43,10 +43,10 @@ function comment(e) {
                         c = o.getFullYear() + "-" + (o.getMonth() + 1 < 10 ? "0" : "") + (o.getMonth() + 1) + "-" + (o.getDate() < 10 ? "0" : "") + o.getDate() + "&emsp;" + (o.getHours() < 10 ? "0" : "") + o.getHours() + ":" + (o.getMinutes() < 10 ? "0" : "") + o.getMinutes() + ":" + (o.getSeconds() < 10 ? "0" : "") + o.getSeconds(),
                         r = $("#b-login-word .b-head_img").attr("src"), d = $("#b-login-word .b-nickname").text();
                     if (0 == l) {
-                        var m = '<div class="row b-user b-parent"><div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col"><img title="白俊遥博客" alt="白俊遥博客" src="' + r + '" class="b-user-pic"></div><div class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col"><p class="b-content"><span class="b-user-name">' + d + "</span>：" + a + '</p><p class="b-date">' + c + ' <a onclick="reply(this)" username="' + d + '" pid="' + s + '" aid="' + i + '" href="javascript:;">回复</a></p><div class="b-clear-float"></div></div></div>';
+                        var m = '<div class="row b-user b-parent"><div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col"><img title="青云博客" alt="青云博客" src="' + r + '" class="b-user-pic"></div><div class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col"><p class="b-content"><span class="b-user-name">' + d + "</span>：" + a + '</p><p class="b-date">' + c + ' <a onclick="reply(this)" username="' + d + '" pid="' + s + '" aid="' + i + '" href="javascript:;">回复</a></p><div class="b-clear-float"></div></div></div>';
                         $(".b-user-comment").prepend(m)
                     } else {
-                        var m = '<div class="row b-user b-child"><div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col"><img title="白俊遥博客" alt="白俊遥博客" src="' + r + '" class="b-user-pic"></div><ul class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col"><li class="b-content"><span class="b-reply-name">' + d + '</span><span class="b-reply">回复</span><span class="b-user-name">' + n + "</span>：" + a + '</li><li class="b-date">' + c + ' <a onclick="reply(this)" pid="' + s + '" aid="' + i + '" username="' + n + '" href="javascript:;">回复</a></li><li class="b-clear-float"></li></ul></div>';
+                        var m = '<div class="row b-user b-child"><div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col"><img title="青云博客" alt="青云博客" src="' + r + '" class="b-user-pic"></div><ul class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col"><li class="b-content"><span class="b-reply-name">' + d + '</span><span class="b-reply">回复</span><span class="b-user-name">' + n + "</span>：" + a + '</li><li class="b-date">' + c + ' <a onclick="reply(this)" pid="' + s + '" aid="' + i + '" username="' + n + '" href="javascript:;">回复</a></li><li class="b-clear-float"></li></ul></div>';
                         $(e).parents(".b-content-col").eq(0).append(m), $(e).parents(".b-box-textarea").eq(0).remove()
                     }
                     $(e).parents(".b-box-textarea").eq(0).find(".b-box-content").html(""), layer.closeAll()

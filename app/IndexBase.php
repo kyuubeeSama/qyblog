@@ -42,14 +42,13 @@ class IndexBase extends BaseController {
         $category = new Category();
         $tag = new Tag();
         $link = new Link();
-        $assign=array(
-            'categorys'=>$category->getAllData(),
-            'tags'=>$tag->getAllData(),
-            'links'=>$link->getDataByState(0,1),
-            'recommend'=>$recommend,
-            'new_comment'=>$new_comment,
-            'show_link'=>$show_link,
-        );
+        $assign=['categorys'=>$category->getAllData(),
+                 'tags'=>$tag->getAllData(),
+                 'links'=>$link->getDataByState(0,1),
+                 'recommend'=>$recommend,
+                 'new_comment'=>$new_comment,
+                 'show_link'=>$show_link
+	        ];
         View::assign($assign);
     }
 }

@@ -12,21 +12,21 @@ use Tool\Page;
  */
 class Article extends model {
     // 自动验证
-    protected $_validate = array(
-        array( 'tid', 'require', '必须选择栏目' ),
-        array( 'title', 'require', '文章标题必填' ),
-        array( 'author', 'require', '作者必填' ),
-        array( 'content', 'require', '文章内容必填' ),
-    );
+    protected $_validate = [
+    	['tid', 'require', '必须选择栏目'],
+	    [ 'title', 'require', '文章标题必填' ],
+	    [ 'author', 'require', '作者必填' ],
+	    [ 'content', 'require', '文章内容必填' ],
+    ];
 
     // 自动完成
-    protected $_auto = array(
-        array( 'click', 0 ),
-        array( 'is_delete', 0 ),
-        array( 'addtime', 'time', 1, 'function' ),
-        array( 'description', 'getDescription', 3, 'callback' ),
-        array( 'keywords', 'comma2coa', 3, 'callback' ),
-    );
+    protected $_auto = [
+        [ 'click', 0 ],
+        [ 'is_delete', 0 ],
+        [ 'addtime', 'time', 1, 'function' ],
+        [ 'description', 'getDescription', 3, 'callback' ],
+        [ 'keywords', 'comma2coa', 3, 'callback' ]
+    ];
 
     // 获得描述；供自动完成调用
     protected function getDescription( $description ) {
@@ -165,17 +165,20 @@ class Article extends model {
         return true;
     }
 
-    /**
-     * 获得文章分页数据
-     *
-     * @param strind $cid 分类id 'all'为全部分类
-     * @param strind $tid 标签id 'all'为全部标签
-     * @param strind $is_show 是否显示 1为显示 0为显示
-     * @param strind $is_delete 状态 1为删除 0为正常
-     * @param strind $limit 分页条数
-     *
-     * @return array $data 分页样式 和 分页数据
-     */
+	/**
+	 * 获得文章分页数据
+	 *
+	 * @param string $cid 分类id 'all'为全部分类
+	 * @param string $tid 标签id 'all'为全部标签
+	 * @param string $is_show 是否显示 1为显示 0为显示
+	 * @param int $is_delete 状态 1为删除 0为正常
+	 * @param int $limit 分页条数
+	 *
+	 * @return array $data 分页样式 和 分页数据
+	 * @throws \think\db\exception\DataNotFoundException
+	 * @throws \think\db\exception\DbException
+	 * @throws \think\db\exception\ModelNotFoundException
+	 */
     public function getPageData( $cid = 'all', $tid = 'all', $is_show = '1', $is_delete = 0, $limit = 10 ) {
         if ( $cid == 'all' && $tid == 'all' ) {
             // 获取全部分类、全部标签下的文章
@@ -195,23 +198,23 @@ class Article extends model {
                 ->order( 'addtime', 'desc' )
                 ->limit($page->firstRow,$page->listRows)
                 ->select();
-            $extend = array(
-                'type' => 'index',
-                'id'   => 0
-            );
+            $extend = [
+	            'type' => 'index',
+	            'id'   => 0
+            ];
         } elseif ( $cid == 'all' && $tid != 'all' ) {
             // 获取tid下的全部文章
             if ( $is_show == 'all' ) {
-                $where = array(
-                    'at.tid'      => $tid,
-                    'a.is_delete' => $is_delete
-                );
+                $where = [
+	                'at.tid'      => $tid,
+	                'a.is_delete' => $is_delete
+                ];
             } else {
-                $where = array(
-                    'at.tid'      => $tid,
-                    'a.is_delete' => $is_delete,
-                    'a.is_show'   => $is_show
-                );
+                $where = [
+	                'at.tid'      => $tid,
+	                'a.is_delete' => $is_delete,
+	                'a.is_show'   => $is_show
+                ];
             }
 //			$articletag = new Articletag();
             //FIXME:更新此处代码为withjoin
@@ -228,23 +231,23 @@ class Article extends model {
                 ->order( 'a.addtime desc' )
                 ->limit( $page->firstRow . ',' . $page->listRows )
                 ->select();
-            $extend = array(
+            $extend = [
                 'type' => 'tid',
                 'id'   => $tid
-            );
+            ];
         } elseif ( $cid != 'all' && $tid == 'all' ) {
             // 获取cid下的全部文章
             if ( $is_show == 'all' ) {
-                $where = array(
+                $where = [
                     'cid'       => $cid,
                     'is_delete' => $is_delete,
-                );
+                ];
             } else {
-                $where = array(
+                $where = [
                     'cid'       => $cid,
                     'is_delete' => $is_delete,
                     'is_show'   => $is_show
-                );
+                ];
             }
             $count  = $this
                 ->where( $where )
@@ -255,10 +258,10 @@ class Article extends model {
                 ->order( 'addtime desc' )
                 ->limit( $page->firstRow . ',' . $page->listRows )
                 ->select();
-            $extend = array(
+            $extend = [
                 'type' => 'cid',
                 'id'   => $cid
-            );
+            ];
         }
         $show       = $page->show();
         $articletag = new Articletag();
@@ -300,11 +303,11 @@ class Article extends model {
             if ( isset( $map['tid'] ) ) {
                 // 根据此标签tid获取上下篇文章
                 $prev_map['at.tid'] = $map['tid'];
-                $prev_map[]         = array( 'a.is_show' => 1 );
-                $prev_map[]         = array( 'a.is_delete' => 0 );
+                $prev_map[]         = [ 'a.is_show' => 1 ];
+                $prev_map[]         = [ 'a.is_delete' => 0 ];
                 $next_map           = $prev_map;
-                $prev_map['a.aid']  = array( 'gt', $aid );
-                $next_map['a.aid']  = array( 'lt', $aid );
+                $prev_map['a.aid']  = [ 'gt', $aid ];
+                $next_map['a.aid']  = [ 'lt', $aid ];
                 $data['prev']       = $this->field( 'a.aid,a.title' )
                     ->alias( 'a' )
                     ->join( 'articletag at', 'a.aid=at.aid', 'LEFT' )
@@ -321,32 +324,32 @@ class Article extends model {
             } else if ( isset( $map['cid'] ) ) {
                 // 根据此分类cid获取上下篇文章
                 $prev_map        = $map;
-                $prev_map[]      = array( 'is_show' => 1 );
-                $prev_map[]      = array( 'is_delete' => 0 );
+                $prev_map[]      = ['is_show' => 1];
+                $prev_map[]      = ['is_delete' => 0];
                 $next_map        = $prev_map;
-                $prev_map['aid'] = array( 'gt', $aid );
-                $next_map['aid'] = array( 'lt', $aid );
+                $prev_map['aid'] = [ 'gt', $aid ];
+                $next_map['aid'] = [ 'lt', $aid ];
                 $data['prev']    = $this->field( 'aid,title' )->where( $prev_map )->limit( 1 )->find();
                 $data['next']    = $this->field( 'aid,title' )->where( $next_map )->order( 'aid desc' )->limit( 1 )->find();
             } else {
                 // 根据搜索词获取上下篇文章
-                $prev_map        = array( 'title' => array( 'like', '%' . $map['title'] . '%' ) );
-                $prev_map[]      = array( 'is_show' => 1 );
-                $prev_map[]      = array( 'is_delete' => 0 );
+                $prev_map        = [ 'title' => [ 'like', '%' . $map['title'] . '%' ] ];
+                $prev_map[]      = [ 'is_show' => 1 ];
+                $prev_map[]      = [ 'is_delete' => 0 ];
                 $next_map        = $prev_map;
-                $prev_map['aid'] = array( 'gt', $aid );
-                $next_map['aid'] = array( 'lt', $aid );
+                $prev_map['aid'] = [ 'gt', $aid ];
+                $next_map['aid'] = [ 'lt', $aid ];
                 $data['prev']    = $this->field( 'aid,title' )->where( $prev_map )->limit( 1 )->find();
                 $data['next']    = $this->field( 'aid,title' )->where( $next_map )->order( 'aid desc' )->limit( 1 )->find();
             }
             // 如果不为空 添加url
             if ( ! empty( $data['prev'] ) ) {
-                $data['prev']['url'] = url( 'index/index/article/', array( 'aid' => $data['prev']['aid'] ) );
+                $data['prev']['url'] = url( 'index/index/article/', [ 'aid' => $data['prev']['aid']]);
             }
             if ( ! empty( $data['next'] ) ) {
-                $data['next']['url'] = url( 'index/index/article/', array( 'aid' => $data['next']['aid'] ) );
+                $data['next']['url'] = url( 'index/index/article/', [ 'aid' => $data['next']['aid']]);
             }
-            $data['current']             = $this->where( array( 'aid' => $aid ) )->find();
+            $data['current']             = $this->where([ 'aid' => $aid ])->find();
             $data['current']['tids']     = $articletag->getDataByAid( $aid );
             $data['current']['tag']      = $articletag->getDataByAid( $aid, 'all' );
             $data['current']['category'] = current( $category->getDataByCid( $data['current']['cid'], 'cid,cid,cname,keywords' ) );
@@ -361,9 +364,9 @@ class Article extends model {
         $articlepic = new Articlepic();
         $articletag = new Articletag();
         $category   = new Category();
-        $map        = array(
-            'title' => array( 'like', "%$search_word%" )
-        );
+        $map        = [
+            'title' => [ 'like', "%$search_word%" ]
+        ];
         $count      = $this->where( $map )->count();
         $page       = new Page( $count, 10 );
         $list       = $this
@@ -373,20 +376,20 @@ class Article extends model {
             ->select();
         foreach ( $list as $k => $v ) {
             $list[ $k ]['pic_path'] = $articlepic->getDataByAid( $v['aid'] );
-            $list[ $k ]['url']      = url( 'index/index/article/', array(
+            $list[ $k ]['url']      = url( 'index/index/article/', [
                 'search_word' => $search_word,
                 'aid'         => $v['aid']
-            ) );
+            ] );
             $list[ $k ]['tids']     = $articletag->getDataByAid( $v['aid'] );
             $list[ $k ]['tag']      = $articletag->getDataByAid( $v['aid'], 'all' );
             $list[ $k ]['category'] = current( $category->getDataByCid( $v['cid'], 'cid,cid,cname,keywords' ) );
             $list[ $k ]['addtime']  = word_time( $v['addtime'] );
         }
         $show = $page->show();
-        $data = array(
+        $data = [
             'page' => $show,
             'data' => $list
-        );
+        ];
 
         return $data;
     }
@@ -397,11 +400,11 @@ class Article extends model {
         if ( $is_all ) {
             return $this->order( 'addtime desc' )->select();
         } else {
-            $where = array(
+            $where = [
                 'cid'       => $cid,
                 'is_show'   => 1,
                 'is_delete' => 0,
-            );
+            ];
 
 //			return $this->where( $where )->order( 'addtime desc' )->select();
             return Db::table( 'qy_article' )->where( $where )->order( 'addtime desc' )->select();
@@ -409,7 +412,7 @@ class Article extends model {
     }
 
     // 传递$map获取count数据
-    public function getCountData( $map = array() ) {
+    public function getCountData( $map = [] ) {
         return $this->where( $map )->count();
     }
 

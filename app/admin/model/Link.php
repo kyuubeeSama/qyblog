@@ -11,9 +11,9 @@ use think\Model;
 class Link extends Model {
 	// 定义自动验证规则
 	protected $_validate = array(
-		array( 'lname', 'require', '链接名称必填' ),
-		array( 'url', 'require', '链接必填' ),
-		array( 'sort', 'require', '排序必填' ),
+		['lname', 'require', '链接名称必填'],
+		['url', 'require', '链接必填'],
+		['sort', 'require', '排序必填'],
 	);
 
 	// 添加数据
