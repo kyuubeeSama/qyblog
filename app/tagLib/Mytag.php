@@ -84,7 +84,7 @@ php;
     //引入animate
     public function taganimate() {
         $link = <<<php
-                <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/animate.css">
+                <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/animate.css">
 php;
         return $link;
     }

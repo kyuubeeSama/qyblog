@@ -331,7 +331,7 @@ class Article extends model {
                 $next_map['aid'] = [ 'lt', $aid ];
                 $data['prev']    = $this->field( 'aid,title' )->where( $prev_map )->limit( 1 )->find();
                 $data['next']    = $this->field( 'aid,title' )->where( $next_map )->order( 'aid desc' )->limit( 1 )->find();
-            } else {
+            } else if( isset($map['title'])) {
                 // 根据搜索词获取上下篇文章
                 $prev_map        = [ 'title' => [ 'like', '%' . $map['title'] . '%' ] ];
                 $prev_map[]      = [ 'is_show' => 1 ];
@@ -352,7 +352,7 @@ class Article extends model {
             $data['current']             = $this->where([ 'aid' => $aid ])->find();
             $data['current']['tids']     = $articletag->getDataByAid( $aid );
             $data['current']['tag']      = $articletag->getDataByAid( $aid, 'all' );
-            $data['current']['category'] = current( $category->getDataByCid( $data['current']['cid'], 'cid,cid,cname,keywords' ) );
+            $data['current']['category'] =  $category->getDataByCid( $data['current']['cid'], 'cid,cid,cname,keywords' ) ;
             $data['current']['content']  = preg_ueditor_image_path( $data['current']['content'] );
         }
 
