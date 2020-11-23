@@ -90,28 +90,33 @@ class Index extends IndexBase {
 		return View::fetch( 'tag' );
 	}
 
-	// 文章内容
-	public function article() {
-		$aid         = \input( 'get.aid', 0, 'intval' );
+	// 文章详情
+	public function article( Request $request ) {
+//		$aid         = \input( 'get.aid', 0, 'intval' );
+		$aid         = $request->param( 'aid' );
 		$cid         = intval( Cookie::get( 'cid' ) );
 		$tid         = intval( Cookie::get( 'tid' ) );
 		$search_word = Cookie::get( 'search_word' );
 		$search_word = empty( $search_word ) ? 0 : $search_word;
-		$read = unserialize(Cookie::get('read'));
+		$read        = unserialize( Cookie::get( 'read' ) );
 		// 判断是否已经记录过aid
-		if ( is_array($read) && array_key_exists( $aid, $read ) ) {
+		if ( is_array( $read ) && array_key_exists( $aid, $read ) ) {
 			// 判断点击本篇文章的时间是否已经超过一天
 			if ( $read[ $aid ] - time() >= 86400 ) {
 				$read[ $aid ] = time();
 				// 文章点击量+1
-				Db::table( 'qy_Article' )->where( 'aid', $aid )->inc( 'click', 1 );
+				Db::name( 'article' )
+				  ->where( 'aid', $aid )
+				  ->inc( 'click', 1 );
 			}
 		} else {
 			$read[ $aid ] = time();
 			// 文章点击量+1
-			Db::table( 'qy_Article' )->where( 'aid', $aid )->inc( 'click', 1 );
+			Db::name( 'article' )
+			  ->where( 'aid', $aid )
+			  ->inc( 'click', 1 );
 		}
-		Cookie::set('read',serialize($read),864000);
+		Cookie::set( 'read', serialize( $read ), 864000 );
 		switch ( true ) {
 			case $cid == 0 && $tid == 0 && $search_word == (string) 0:
 				$map = array();
@@ -149,11 +154,13 @@ class Index extends IndexBase {
 		];
 		if ( ! empty( $_SESSION['user']['id'] ) ) {
 			//TODO:待解决
-			$userData             = Db::table( 'qy_oauth_user' )->where( 'id', $_SESSION['user']['id'] )->field( 'email' )->find();
+			$userData             = Db::name( 'oauth_user' )
+			                          ->where( 'id', $_SESSION['user']['id'] )
+			                          ->field( 'email' )
+			                          ->find();
 			$assign['user_email'] = $userData['email'];
 		}
 		View::assign( $assign );
-
 		return View::fetch( 'article' );
 	}
 

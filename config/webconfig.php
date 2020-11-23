@@ -4,20 +4,20 @@ return [
 //*************************************网站设置****************************************
 	'WEB_STATUS'                =>  '1',           //网站状态1:开启 0:关闭
 	'WEB_CLOSE_WORD'            =>  '网站升级中，请稍后访问。',       //网站关闭时提示文字
-	'WEB_ICP_NUMBER'            =>  '豫ICP备14009546号-3',       // 网站ICP备案号
-	'ADMIN_EMAIL'               =>  'baijunyao@baijunyao.com',          // 站长邮箱
+	'WEB_ICP_NUMBER'            =>  '豫ICP备2020032902号',       // 网站ICP备案号
+	'ADMIN_EMAIL'               =>  'yshjbw@163.com',          // 站长邮箱
 
 //*************************************优化推广****************************************
 	'WEB_NAME'                  =>  '青云博客',             //网站名：
-	'WEB_KEYWORDS'              =>  '青云,帅白,技术博客,个人博客,bjyblog',         //网站关键字
-	'WEB_DESCRIPTION'           =>  '青云的个人技术博客,bjyblog官方网站',      //网站描述
+	'WEB_KEYWORDS'              =>  '青云,技术博客,个人博客,qyblog',         //网站关键字
+	'WEB_DESCRIPTION'           =>  '青云的个人技术博客,qyblog官方网站',      //网站描述
 	'AUTHOR'                    =>  '三王组',               //默认作者
-	'COPYRIGHT_WORD'            =>  '本文为青云原创文章,转载无需和我联系,但请注明来自青云博客baijunyao.com',       //文章保留版权提示
+	'COPYRIGHT_WORD'            =>  '本文为青云原创文章,转载无需和我联系,但请注明来自青云博客qingyuannet.com',       //文章保留版权提示
 	'IMAGE_TITLE_ALT_WORD'      =>  '青云博客', //图片默认title和alt
 
 //*************************************水印设置****************************************
 	'WATER_TYPE'                =>  '1',           //水印类型 0:不使用水印 1:文字水印 2:图片水印 3:文字和图片水印同时使用
-	'TEXT_WATER_WORD'           =>  'baijunyao.com',      //文字水印内容
+	'TEXT_WATER_WORD'           =>  'qingyuannet.com',      //文字水印内容
 	'TEXT_WATER_TTF_PTH'        =>  './Public/static/font/ariali.ttf',   //文字水印字体路径
 	'TEXT_WATER_FONT_SIZE'      =>  '15', //文字水印文字字号
 	'TEXT_WATER_COLOR'          =>  '#008CBA',     //文字水印文字颜色

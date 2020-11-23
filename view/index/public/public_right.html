@@ -21,25 +21,25 @@
             {/foreach}
         </p>
     </div>
-    <div class="b-link">
-        <h4 class="b-title">最新评论</h4>
-        <div>
-            {foreach name="new_comment" item="v"}
-                <ul class="b-new-comment {eq name="key" value="0"}b-new-commit-first{/eq}">
-                    <img class="b-head-img js-head-img" src="__HOME__/image/qq_default.jpg" _src="{$v['head_img']}" alt="{$v['nickname']}">
-                    <li class="b-nickname">
-                        {$v['nickname']}<span>{$v['date']}</span>
-                    </li>
-                    <li class="b-nc-article">
-                        在<a href="{:url('index/index/article',['aid'=>$v['aid']])}" target="_blank">{$v['title']}</a>中评论
-                    </li>
-                    <li class="b-content">
-                        {$v['content']}
-                    </li>
-                </ul>  
-            {/foreach}
-        </div>
-    </div>
+<!--    <div class="b-link">-->
+<!--        <h4 class="b-title">最新评论</h4>-->
+<!--        <div>-->
+<!--            {foreach name="new_comment" item="v"}-->
+<!--                <ul class="b-new-comment {eq name="key" value="0"}b-new-commit-first{/eq}">-->
+<!--                    <img class="b-head-img js-head-img" src="__HOME__/image/qq_default.jpg" _src="{$v['head_img']}" alt="{$v['nickname']}">-->
+<!--                    <li class="b-nickname">-->
+<!--                        {$v['nickname']}<span>{$v['date']}</span>-->
+<!--                    </li>-->
+<!--                    <li class="b-nc-article">-->
+<!--                        在<a href="{:url('index/index/article',['aid'=>$v['aid']])}" target="_blank">{$v['title']}</a>中评论-->
+<!--                    </li>-->
+<!--                    <li class="b-content">-->
+<!--                        {$v['content']}-->
+<!--                    </li>-->
+<!--                </ul>  -->
+<!--            {/foreach}-->
+<!--        </div>-->
+<!--    </div>-->
     {eq name="show_link" value="1"}
         <div class="b-link">
             <h4 class="b-title">友情链接</h4>
