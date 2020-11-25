@@ -8,5 +8,4 @@ thinkphp
 public/error/
 public/index.html
 public/.htaccess
-composer.lock
 /public/phpMyAdmin4.8.5/
